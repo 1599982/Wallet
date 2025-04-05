@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>50</y>
-      <width>591</width>
-      <height>461</height>
+      <y>40</y>
+      <width>631</width>
+      <height>471</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -74,7 +74,44 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="STKW_MAIN"/>
+    <widget class="QWidget" name="STKW_MAIN">
+     <widget class="QTableView" name="TBV_TRANS">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>40</y>
+        <width>411</width>
+        <height>381</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="PBTN_ADD">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>90</y>
+        <width>80</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="PBTN_EDIT">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>150</y>
+        <width>80</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Edit</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="STKW_FORM_REGISTER">
      <widget class="QLineEdit" name="LEDIT_USER_R">
       <property name="geometry">

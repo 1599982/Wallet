@@ -5,7 +5,7 @@
 int main(int argc, char *argv[]) {
     QApplication qapp(argc, argv);
 
-    QSqlDatabase db = ConnX::connect("senati.wallet");
+    Connx::connect("senati.wallet");
 
     Window mwdn;
     mwdn.show();

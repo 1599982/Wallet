@@ -2,7 +2,6 @@
 #define WINDOW_H
 
 #include <QMainWindow>
-#include <QSqlDatabase>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -13,8 +12,6 @@ QT_END_NAMESPACE
 class Window: public QMainWindow {
     Q_OBJECT
 public:
-    QSqlDatabase db;
-
     Window(QWidget *parent = nullptr);
     ~Window();
 private slots:
@@ -22,6 +19,7 @@ private slots:
     void on_PBTN_REGISTER_clicked();
     void on_PBTN_REGISTER_R_clicked();
     void on_PBTN_CANCEL_R_clicked();
+    void on_PBTN_ADD_clicked();
 private:
     Ui::Window *ui;
 };
