@@ -10,7 +10,5 @@ int main(int argc, char *argv[]) {
     Window mwdn;
     mwdn.show();
 
-    db.close();
-
     return qapp.exec();
 }
