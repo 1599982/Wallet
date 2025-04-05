@@ -2,6 +2,7 @@
 #include "connx/connx.h"
 #include "ui_window.h"
 #include "window.h"
+#include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 
@@ -36,8 +37,21 @@ void Window::on_PBTN_LOGIN_clicked() {
         return;
     }
 
+    sql = "SELECT * FROM person WHERE user = ?";
+    QList<QVariant> person = Connx::queryBinds(sql, QList<QVariant> {strUser});
+
+    QString data = person[0].toString() + ':' + person[1].toString();
+    Connx::user.session = Connx::generateHash(data);
+    Connx::user.id = person[0].toInt();
+    Connx::user.name = person[1].toString();
+
+    sql = "SELECT trs.hash, trs.date, trs.time, trs.message, trs.amount, person.user FROM \"transaction\" AS trs JOIN person ON trs.person = person.id";
     QSqlQueryModel *model = new QSqlQueryModel();
-    model -> setQuery("SELECT * FROM transaction", Connx::connect());
+    model -> setQuery(sql, Connx::connect());
+
+    if (model -> lastError().isValid()) {
+        qDebug() << "[window::ERR]" << model -> lastError();
+    }
 
     ui -> TBV_TRANS -> setModel(model);
     // ui -> TBV_TRANS -> verticalHeader() -> setVisible(false);

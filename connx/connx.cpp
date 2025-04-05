@@ -1,7 +1,10 @@
 #include "connx.h"
+#include <QCryptographicHash>
+#include <QDateTime>
 #include <QFile>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlRecord>
 
 QSqlDatabase Connx::connect() {
     return QSqlDatabase::database();
@@ -9,6 +12,7 @@ QSqlDatabase Connx::connect() {
 
 void Connx::connect(const QString &dbname) {
     QSqlDatabase qdb = QSqlDatabase::addDatabase("QSQLITE");
+    qdb.setConnectOptions("QSQLITE_BUSY_TIMEOUT=5000");
     qdb.setDatabaseName(dbname);
 
     if (qdb.open()) {
@@ -49,6 +53,19 @@ void Connx::connect(const QString &dbname) {
     file.close();
 }
 
+QString Connx::generateHash(QString &data) {
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    QDate currentDate = currentDateTime.date();
+    QTime currentTime = currentDateTime.time();
+
+    data = currentDate.toString("yyyy-MM-dd") + ':' + currentTime.toString("HH:mm:ss") + ':' + data;
+
+    QByteArray byteArray = data.toUtf8();
+    QByteArray hash = QCryptographicHash::hash(byteArray, QCryptographicHash::Sha1);
+
+    return hash.toHex();
+}
+
 bool Connx::userExists(const QString &username) {
     QString sql = "SELECT COUNT(*) FROM person WHERE user = ?";
     return Connx::queryBinds(sql, username).toBool();
@@ -75,11 +92,10 @@ QList<QVariant> Connx::queryBinds(const QString &sql, const QList<QVariant> &bin
         qDebug() << "[connx::ERR]" << query.lastError();
     }
 
-    int i = 0;
-
     while (query.next()) {
-        results.append(query.value(i));
-        i++;
+        for (int i = 0; i < query.record().count(); ++i) {
+            results.append(query.value(i));
+        }
     }
 
     return results;
