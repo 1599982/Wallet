@@ -21,7 +21,9 @@ void CommitWindow::on_PBTN_ACCEPT_clicked() {
     QString data = strMsg + ':' + QString::number(amount) + ':' + QString::number(Connx::user.id);
 
     Connx::queryBinds(sql, QList<QVariant> {Connx::generateHash(data), strMsg, amount, Connx::user.id});
+    this -> hide();
 }
 
 void CommitWindow::on_PBTN_CANCEL_clicked() {
+    this -> hide();
 }

@@ -1,6 +1,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include "commitwindow.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -20,8 +21,10 @@ private slots:
     void on_PBTN_REGISTER_R_clicked();
     void on_PBTN_CANCEL_R_clicked();
     void on_PBTN_ADD_clicked();
+    void on_PBTN_EDIT_clicked();
 private:
     Ui::Window *ui;
+    CommitWindow *cmwdn;
 };
 
 #endif // WINDOW_H

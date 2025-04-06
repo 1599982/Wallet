@@ -5,6 +5,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QTimer>
 
 QString sql;
 
@@ -47,14 +48,21 @@ void Window::on_PBTN_LOGIN_clicked() {
 
     sql = "SELECT trs.hash, trs.date, trs.time, trs.message, trs.amount, person.user FROM \"transaction\" AS trs JOIN person ON trs.person = person.id";
     QSqlQueryModel *model = new QSqlQueryModel();
-    model -> setQuery(sql, Connx::connect());
+    // model -> setQuery(sql, Connx::connect());
 
     if (model -> lastError().isValid()) {
         qDebug() << "[window::ERR]" << model -> lastError();
     }
 
-    ui -> TBV_TRANS -> setModel(model);
-    // ui -> TBV_TRANS -> verticalHeader() -> setVisible(false);
+    QTimer *timer = new QTimer(this);
+
+    connect(timer, &QTimer::timeout, this, [=]() {
+        model -> setQuery(sql, Connx::connect());
+        ui -> TBV_TRANS -> setModel(model);
+    });
+
+    timer -> start(500);
+
     ui -> STKW_FORM -> setCurrentWidget(ui -> STKW_MAIN);
 }
 
@@ -86,7 +94,14 @@ void Window::on_PBTN_CANCEL_R_clicked() {
 }
 
 void Window::on_PBTN_ADD_clicked() {
-    CommitWindow *cmwdn = new CommitWindow();
+    cmwdn = new CommitWindow();
     cmwdn -> setModal(true);
     cmwdn -> show();
 }
+
+void Window::on_PBTN_EDIT_clicked() {
+    cmwdn = new CommitWindow();
+    cmwdn -> setModal(true);
+    cmwdn -> show();
+}
+
