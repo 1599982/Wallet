@@ -16,12 +16,19 @@ CommitWindow::~CommitWindow() {
 void CommitWindow::on_PBTN_ACCEPT_clicked() {
     if (Connx::mode == "ADD") {
         addAction();
-    } else {
-        editAction();
+        return;
     }
+
+    editAction();
 }
 
 void CommitWindow::showEvent(QShowEvent *event) {
+    if (Connx::mode == "ADD") {
+        ui -> TEDIT_MESSAGE -> setText("");
+        ui -> LEDIT_AMOUNT -> setText("");
+        return;
+    }
+
     sql = "SELECT message, amount FROM \"transaction\" WHERE rowid = ?";
     Connx::result = Connx::queryBinds(sql, QList<QVariant> {Connx::row});
 

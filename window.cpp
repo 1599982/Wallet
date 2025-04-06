@@ -64,13 +64,18 @@ void Window::on_PBTN_REGISTER_R_clicked() {
     QString strPass = ui -> LEDIT_PASS_R -> text();
     QString strRePass = ui -> LEDIT_REPASS_R -> text();
 
-    if (Connx::userExists(strUser)) {
+    if (strUser.isEmpty() || strPass.isEmpty() || strRePass.isEmpty()) {
         qDebug() << "[window:ERR] Window::on_PBTN_REGISTER_R_clicked() :-: 1";
         return;
     }
 
-    if (strPass.compare(strRePass) != 0) {
+    if (Connx::userExists(strUser)) {
         qDebug() << "[window:ERR] Window::on_PBTN_REGISTER_R_clicked() :-: 2";
+        return;
+    }
+
+    if (strPass.compare(strRePass) != 0) {
+        qDebug() << "[window:ERR] Window::on_PBTN_REGISTER_R_clicked() :-: 3";
         return;
     }
 
@@ -92,6 +97,16 @@ void Window::on_PBTN_ADD_clicked() {
 void Window::on_PBTN_EDIT_clicked() {
     Connx::mode = "EDIT";
     Connx::row = ui -> TBV_TRANS -> currentIndex().row() + 1;
+
+    sql = "SELECT person FROM \"transaction\" WHERE rowid = ?";
+    int user = Connx::queryBinds(sql, Connx::row).toInt();
+
+    qDebug() << user << Connx::user.id;
+
+    if (user != Connx::user.id) {
+        qDebug() << "[window:ERR] Window::on_PBTN_EDIT_clicked() :-: 1";
+        return;
+    }
 
     cmwdn = new CommitWindow();
     cmwdn -> setModal(true);
