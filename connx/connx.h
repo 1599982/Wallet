@@ -4,6 +4,8 @@
 #include <QSqlDatabase>
 #include <QString>
 
+static QString sql;
+
 struct Person {
     QString session;
     int id;
@@ -11,6 +13,9 @@ struct Person {
 };
 
 namespace Connx {
+    extern QList<QVariant> result;
+    extern int row;
+    extern QString mode;
     extern Person user;
     QSqlDatabase connect();
     void connect(const QString &dbname);

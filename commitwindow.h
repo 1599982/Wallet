@@ -15,8 +15,13 @@ public:
 private slots:
     void on_PBTN_ACCEPT_clicked();
     void on_PBTN_CANCEL_clicked();
+protected:
+    void showEvent(QShowEvent *event) override;
 private:
     Ui::CommitWindow *ui;
+
+    void addAction();
+    void editAction();
 };
 
 #endif // COMMITWINDOW_H

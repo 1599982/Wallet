@@ -22,9 +22,12 @@ private slots:
     void on_PBTN_CANCEL_R_clicked();
     void on_PBTN_ADD_clicked();
     void on_PBTN_EDIT_clicked();
+    void on_PBTN_UPDATE_clicked();
 private:
     Ui::Window *ui;
     CommitWindow *cmwdn;
+
+    void updateTable();
 };
 
 #endif // WINDOW_H

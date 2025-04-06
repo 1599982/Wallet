@@ -7,7 +7,11 @@
 #include <QSqlQueryModel>
 #include <QTimer>
 
-QString sql;
+// QString sql;
+
+QList<QVariant> Connx::result;
+int Connx::row = -1;
+QString Connx::mode = "";
 
 Window::Window(QWidget *parent):
     QMainWindow(parent),
@@ -46,22 +50,7 @@ void Window::on_PBTN_LOGIN_clicked() {
     Connx::user.id = person[0].toInt();
     Connx::user.name = person[1].toString();
 
-    sql = "SELECT trs.hash, trs.date, trs.time, trs.message, trs.amount, person.user FROM \"transaction\" AS trs JOIN person ON trs.person = person.id";
-    QSqlQueryModel *model = new QSqlQueryModel();
-    // model -> setQuery(sql, Connx::connect());
-
-    if (model -> lastError().isValid()) {
-        qDebug() << "[window::ERR]" << model -> lastError();
-    }
-
-    QTimer *timer = new QTimer(this);
-
-    connect(timer, &QTimer::timeout, this, [=]() {
-        model -> setQuery(sql, Connx::connect());
-        ui -> TBV_TRANS -> setModel(model);
-    });
-
-    timer -> start(500);
+    Window::updateTable();
 
     ui -> STKW_FORM -> setCurrentWidget(ui -> STKW_MAIN);
 }
@@ -94,14 +83,44 @@ void Window::on_PBTN_CANCEL_R_clicked() {
 }
 
 void Window::on_PBTN_ADD_clicked() {
+    Connx::mode = "ADD";
     cmwdn = new CommitWindow();
     cmwdn -> setModal(true);
     cmwdn -> show();
 }
 
 void Window::on_PBTN_EDIT_clicked() {
+    Connx::mode = "EDIT";
+    Connx::row = ui -> TBV_TRANS -> currentIndex().row() + 1;
+
     cmwdn = new CommitWindow();
     cmwdn -> setModal(true);
     cmwdn -> show();
 }
 
+void Window::on_PBTN_UPDATE_clicked() {
+    Window::updateTable();
+}
+
+void Window::updateTable() {
+    sql = "SELECT trs.hash, trs.date, trs.time, trs.message, trs.amount, person.user FROM \"transaction\" AS trs JOIN person ON trs.person = person.id";
+    QSqlQueryModel *model = new QSqlQueryModel();
+
+    if (model -> lastError().isValid()) {
+        qDebug() << "[window::ERR]" << model -> lastError();
+    }
+
+    // QTimer *timer = new QTimer(this);
+    model -> setQuery(sql, Connx::connect());
+    ui -> TBV_TRANS -> setModel(model);
+
+    // connect(timer, &QTimer::timeout, this, [=]() {
+    //     model -> setQuery(sql, Connx::connect());
+
+    //     if (Connx::row != -1) {
+    //         ui -> TBV_TRANS -> selectRow(Connx::row);
+    //     }
+    // });
+
+    // timer -> start(2000);
+}

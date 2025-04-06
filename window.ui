@@ -111,6 +111,19 @@
        <string>Edit</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="PBTN_UPDATE">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>10</y>
+        <width>80</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Update</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="STKW_FORM_REGISTER">
      <widget class="QLineEdit" name="LEDIT_USER_R">
