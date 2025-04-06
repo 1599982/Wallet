@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>769</width>
+    <height>565</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,170 +17,177 @@
    <widget class="QStackedWidget" name="STKW_FORM">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>40</y>
-      <width>631</width>
-      <height>471</height>
+      <x>10</x>
+      <y>10</y>
+      <width>751</width>
+      <height>521</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="STKW_FORM_LOGIN">
-     <widget class="QPushButton" name="PBTN_REGISTER">
+     <widget class="QWidget" name="verticalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>210</y>
-        <width>80</width>
-        <height>26</height>
+        <x>220</x>
+        <y>120</y>
+        <width>291</width>
+        <height>291</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Register</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="PBTN_LOGIN">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>210</y>
-        <width>80</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Login</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="LEDIT_PASS">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>140</y>
-        <width>113</width>
-        <height>26</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="LEDIT_USER">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>90</y>
-        <width>113</width>
-        <height>26</height>
-       </rect>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>User:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="LEDIT_USER"/>
+         </item>
+         <item row="1" column="0" alignment="Qt::AlignmentFlag::AlignHCenter">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Password:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="LEDIT_PASS"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="PBTN_LOGIN">
+           <property name="text">
+            <string>Login</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="PBTN_REGISTER">
+           <property name="text">
+            <string>Register</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="STKW_MAIN">
-     <widget class="QTableView" name="TBV_TRANS">
+     <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>411</width>
-        <height>381</height>
+        <x>0</x>
+        <y>0</y>
+        <width>751</width>
+        <height>501</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QPushButton" name="PBTN_ADD">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>90</y>
-        <width>80</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="PBTN_EDIT">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>150</y>
-        <width>80</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Edit</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="PBTN_UPDATE">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>10</y>
-        <width>80</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Update</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item alignment="Qt::AlignmentFlag::AlignHCenter">
+        <widget class="QPushButton" name="PBTN_UPDATE">
+         <property name="text">
+          <string>Update</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="TBV_TRANS"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item alignment="Qt::AlignmentFlag::AlignRight">
+          <widget class="QPushButton" name="PBTN_ADD">
+           <property name="text">
+            <string>Add</string>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignmentFlag::AlignLeft">
+          <widget class="QPushButton" name="PBTN_EDIT">
+           <property name="text">
+            <string>Edit</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="STKW_FORM_REGISTER">
-     <widget class="QLineEdit" name="LEDIT_USER_R">
+     <widget class="QWidget" name="verticalLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>60</y>
-        <width>113</width>
-        <height>26</height>
+        <x>220</x>
+        <y>120</y>
+        <width>291</width>
+        <height>291</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="LEDIT_PASS_R">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>110</y>
-        <width>113</width>
-        <height>26</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="PBTN_REGISTER_R">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>210</y>
-        <width>80</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Register</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="PBTN_CANCEL_R">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>210</y>
-        <width>80</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Cancel</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="LEDIT_REPASS_R">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>160</y>
-        <width>113</width>
-        <height>26</height>
-       </rect>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="1" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Password:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="LEDIT_USER_R"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="LEDIT_PASS_R"/>
+         </item>
+         <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>User:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Confirm password:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="LEDIT_REPASS_R"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="PBTN_REGISTER_R">
+           <property name="text">
+            <string>Register</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="PBTN_CANCEL_R">
+           <property name="text">
+            <string>Cancel</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -190,7 +197,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>769</width>
      <height>23</height>
     </rect>
    </property>
