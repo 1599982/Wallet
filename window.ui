@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="STKW_FORM_LOGIN">
      <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -57,7 +57,11 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="LEDIT_PASS"/>
+          <widget class="QLineEdit" name="LEDIT_PASS">
+           <property name="echoMode">
+            <enum>QLineEdit::EchoMode::Password</enum>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -148,7 +152,11 @@
           <widget class="QLineEdit" name="LEDIT_USER_R"/>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="LEDIT_PASS_R"/>
+          <widget class="QLineEdit" name="LEDIT_PASS_R">
+           <property name="echoMode">
+            <enum>QLineEdit::EchoMode::Password</enum>
+           </property>
+          </widget>
          </item>
          <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignRight">
           <widget class="QLabel" name="label_3">
@@ -165,7 +173,11 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="LEDIT_REPASS_R"/>
+          <widget class="QLineEdit" name="LEDIT_REPASS_R">
+           <property name="echoMode">
+            <enum>QLineEdit::EchoMode::Password</enum>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

@@ -5,9 +5,6 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
-#include <QTimer>
-
-// QString sql;
 
 QList<QVariant> Connx::result;
 int Connx::row = -1;
@@ -81,10 +78,18 @@ void Window::on_PBTN_REGISTER_R_clicked() {
 
     sql = "INSERT INTO person (user, pass) VALUES (?, ?)";
     Connx::queryBinds(sql, QList<QVariant> {strUser, strPass});
+
+    ui -> STKW_FORM -> setCurrentWidget(ui -> STKW_FORM_LOGIN);
+    ui -> LEDIT_USER_R -> setText("");
+    ui -> LEDIT_PASS_R -> setText("");
+    ui -> LEDIT_REPASS_R -> setText("");
 }
 
 void Window::on_PBTN_CANCEL_R_clicked() {
     ui -> STKW_FORM -> setCurrentWidget(ui -> STKW_FORM_LOGIN);
+    ui -> LEDIT_USER_R -> setText("");
+    ui -> LEDIT_PASS_R -> setText("");
+    ui -> LEDIT_REPASS_R -> setText("");
 }
 
 void Window::on_PBTN_ADD_clicked() {
@@ -125,17 +130,6 @@ void Window::updateTable() {
         qDebug() << "[window::ERR]" << model -> lastError();
     }
 
-    // QTimer *timer = new QTimer(this);
     model -> setQuery(sql, Connx::connect());
     ui -> TBV_TRANS -> setModel(model);
-
-    // connect(timer, &QTimer::timeout, this, [=]() {
-    //     model -> setQuery(sql, Connx::connect());
-
-    //     if (Connx::row != -1) {
-    //         ui -> TBV_TRANS -> selectRow(Connx::row);
-    //     }
-    // });
-
-    // timer -> start(2000);
 }

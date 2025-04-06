@@ -16,10 +16,11 @@ CommitWindow::~CommitWindow() {
 void CommitWindow::on_PBTN_ACCEPT_clicked() {
     if (Connx::mode == "ADD") {
         addAction();
-        return;
+    } else {
+        editAction();
     }
 
-    editAction();
+    this -> hide();
 }
 
 void CommitWindow::showEvent(QShowEvent *event) {
@@ -48,7 +49,6 @@ void CommitWindow::addAction() {
     QString data = strMsg + ':' + QString::number(amount) + ':' + QString::number(Connx::user.id);
 
     Connx::queryBinds(sql, QList<QVariant> {Connx::generateHash(data), strMsg, amount, Connx::user.id});
-    this -> hide();
 }
 
 void CommitWindow::editAction() {
@@ -59,5 +59,4 @@ void CommitWindow::editAction() {
     QString data = strMsg + ':' + QString::number(amount) + ':' + QString::number(Connx::user.id);
 
     Connx::queryBinds(sql, QList<QVariant> {Connx::generateHash(data), strMsg, amount, Connx::row});
-    this -> hide();
 }
